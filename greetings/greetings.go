@@ -14,7 +14,10 @@ func Hello(name string) (string, error) {
 		return "", errors.New("No name provided in greeting function.")
 	}
 	// return greeting which embeds name in message
+	
 	message := fmt.Sprintf(randomFormat(), name)
+	// message := fmt.Sprint(randomFormat()) // Triggers test failure
+
 	// Return message and an error value of nil
 	return message, nil
 }
@@ -29,14 +32,11 @@ func Hellos(names []string) (map[string]string, error) {
 	// the Hello function to get a message for each name.
 	for _, name := range names {
 		message, err := Hello(name)
-
 		if err != nil {
 			return nil, err
 		}
-        
 		// Associate the retrieved message with the name.
 		messages[name] = message
-
 	}
 	return messages, nil
 }
